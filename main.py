@@ -2,6 +2,9 @@ from models.agenda import Agenda
 
 def main():
 
+    agenda_manager = Agenda()
+
+
     opc = -1
     while opc != "0":
             print("\nMyAgenda")
@@ -13,10 +16,8 @@ def main():
             print("4 - Alterar as pessoas envolvidas em um compromisso\n")
             print("5 - Excluir uma pessoa em um compromisso\n")
             print("6 - Excluir um compromisso\n")
-            print ("0 - Finalizar agenda")
+            print ("0 - Finalizar agenda\n")
             opc = input("Digite a opção desejada: ")
-
-            agenda_manager = Agenda()
 
             match opc:
                 case "1":

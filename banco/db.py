@@ -13,8 +13,11 @@ def get_db():
     return _client[os.getenv("MONGO_DB")]
 
 def testar_conexao():
-    _client.admin.command("ping")
-    print("Conectado ao MongoDB!")
+    try:
+        _client.admin.command("ping")
+        print("Conectado ao MongoDB!")
+    except:
+        print("Falha na coneXão com o banco.")
 
 
 

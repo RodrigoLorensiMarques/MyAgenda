@@ -1,6 +1,5 @@
 from models.compromisso import Compromisso
 from banco.db import get_db
-from datetime import datetime
 from bson import ObjectId
 from bson.errors import InvalidId
 
@@ -29,6 +28,8 @@ class Agenda:
             print(f"   Descrição: {compromisso.get('descricao', '-')}")
             print(f"   Pessoas: {', '.join(compromisso.get('lista_pessoas', [])) or 'ninguém'}")
             print(f"   ID: {compromisso['_id']}")
+            print(f"   Data: {compromisso['data']}")
+            print(f"   Horário: {compromisso['horario']}")
             print()
 
     #helper
@@ -72,19 +73,22 @@ class Agenda:
     def cadastrar_compromisso(self):
         titulo_compromisso = input("Digite o nome do compromisso: ")
         descricao_compromisso = input("Digite uma descrição: ")
+        data = input("Digite a data (dd/mm/aaaa): ")
+        horario = input("Digite o horário (hh:mm): ")
 
         pessoas = self.ler_pessoas()
         if pessoas is None:
             return
 
-        novo_compromisso = Compromisso(titulo_compromisso, descricao_compromisso, pessoas, datetime.now())
+        novo_compromisso = Compromisso(titulo_compromisso, descricao_compromisso, pessoas,data, horario)
 
         try:
             resultado = self.compromissos.insert_one({
                 "titulo": novo_compromisso.titulo,
                 "descricao": novo_compromisso.descricao,
                 "lista_pessoas": novo_compromisso.pessoas,
-                "data_hora": novo_compromisso.data_horario
+                "data": novo_compromisso.data,
+                "horario": novo_compromisso.horario
             })
             print(f"Compromisso salvo! ID: {resultado.inserted_id}")
         except Exception as erro:
