@@ -1,49 +1,55 @@
 from models.agenda import Agenda
 
 def main():
-    print("\nMyAgenda")
-    print("-"*20+"")
 
-    print("1 - Listar compromissos\n")
-    print("2 - Cadastrar novo compromisso\n")
-    print("3 - Alterar título e descrição de um compromisso\n")
-    print("4 - Alterar as pessoas envolvidas em um compromisso\n")
-    print("5 - Excluir uma pessoa em um compromisso\n")
-    print("6 - Excluir um compromisso\n")
-    opc = input("Digite a opção desejada: ")
+    opc = -1
+    while opc != "0":
+            print("\nMyAgenda")
+            print("-"*20+"")
 
-    agenda_manager = Agenda()
+            print("1 - Listar compromissos\n")
+            print("2 - Cadastrar novo compromisso\n")
+            print("3 - Alterar título e descrição de um compromisso\n")
+            print("4 - Alterar as pessoas envolvidas em um compromisso\n")
+            print("5 - Excluir uma pessoa em um compromisso\n")
+            print("6 - Excluir um compromisso\n")
+            print ("0 - Finalizar agenda")
+            opc = input("Digite a opção desejada: ")
 
-    match opc:
-        case "1":
-            print("Selecionou")
-            #agenda_manager.listar_compromissos()
+            agenda_manager = Agenda()
 
-            
-        case "2":
-            print("Selecionou")
-            #agenda_manager.cadastrar_compromisso()
+            match opc:
+                case "1":
+                    agenda_manager.listar_compromissos()
+                    input("")
 
-        case "3":
-            print("Selecionou")
-            #agenda_manager.alterar_titulo_descricao_compromisso()
-            
-        case "4":
-            print("Selecionou")
-            #agenda_manager.alterar_pessoas_compromisso()
+                    
+                case "2":
+                    agenda_manager.cadastrar_compromisso()
+                    input("")
 
-
-        case "5":
-            print("Selecionou")
-            #agenda_manager.excluir_pessoa_compromisso()
-
-        case "6":
-            print("Selecionou")
-            #agenda_manager.excluir_compromisso()
+                case "3":
+                    agenda_manager.alterar_titulo_descricao_compromisso()
+                    input("")
+                    
+                case "4":
+                    agenda_manager.alterar_pessoas_compromisso()
+                    input("")
 
 
-        case _:
-            print("Essa opção não existe")
+                case "5":
+                    agenda_manager.excluir_pessoa_compromisso()
+                    input("")
+
+                case "6":
+                    agenda_manager.excluir_compromisso()
+                    input("")
+
+                case "0":
+                    print("Finalizando agenda...")
+
+                case _:
+                    print("Essa opção não existe")
 
 
 
